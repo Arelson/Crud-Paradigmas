@@ -1,6 +1,6 @@
 package com.gb.fornecedor;
 
-public class fornecedor {
+public abstract class fornecedor {
 	private int id;
 	private String nome;
 	private String cont;
