@@ -1,7 +1,7 @@
 package com.gb.missao;
 import java.util.Date;
 
-import com.gb.ususario.Aventureiro;
+import com.gb.usuario.Aventureiro;
 
 public class resignacao {
 	    private int id;

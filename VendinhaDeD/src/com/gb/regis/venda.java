@@ -1,7 +1,7 @@
 package com.gb.regis;
 import java.util.Date;
 import com.gb.item.itens;
-import com.gb.ususario.Aventureiro;
+import com.gb.usuario.Aventureiro;
 
 public class venda {
     private int id;

@@ -1,4 +1,4 @@
-package com.gb.ususario;
+package com.gb.usuario;
 
 public abstract class Aventureiro {
 	private int id;

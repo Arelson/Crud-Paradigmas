@@ -1,6 +1,6 @@
-package com.gb.ususario;
+package com.gb.usuario;
 
-public class sentinela extends Aventureiro {
+public class Sentinela extends Aventureiro {
 	
 	private double distAtk;
 	
@@ -11,7 +11,7 @@ public class sentinela extends Aventureiro {
 		this.distAtk = distAtk;
 	}
 	
-	public sentinela(int id, String nome, int idade, double vida, int nivel, double distAtk) {
+	public Sentinela(int id, String nome, int idade, double vida, int nivel, double distAtk) {
 		super(id, nome, idade, vida, nivel);
 		this.distAtk = distAtk;
 	}

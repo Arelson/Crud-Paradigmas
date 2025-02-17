@@ -1,4 +1,4 @@
-package com.gb.ususario;
+package com.gb.usuario;
 
 public class Guerreiro extends Aventureiro {
 	private double defesaPassiva;
