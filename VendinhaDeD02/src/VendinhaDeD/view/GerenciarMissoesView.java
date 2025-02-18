@@ -13,8 +13,8 @@ public class GerenciarMissoesView extends JFrame {
     private JButton btnAdicionar, btnEditar, btnExcluir;
     private AdministradorController adminController;
 
-    public GerenciarMissoesView(AdministradorController adminController) {
-        this.adminController = adminController;
+    public GerenciarMissoesView() {
+        adminController = new AdministradorController();
 
         setTitle("Gerenciar Missões");
         setSize(400, 300);

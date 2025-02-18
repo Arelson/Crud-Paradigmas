@@ -12,10 +12,10 @@ public class AdminView extends JFrame {
 	private JButton btnGerenciarAventureiros;
     private JButton btnGerenciarMissoes;
     private JButton btnSair;
-    private AdministradorController controller;
+    //private AdministradorController controller;
 
     public AdminView() {
-        controller = new AdministradorController();
+        //controller = new AdministradorController();
         
         setTitle("Painel do Administrador");
         setSize(400, 200);
