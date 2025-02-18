@@ -11,16 +11,16 @@ public class AdministradorController {
     private AventureiroDAO aventureiroDAO;
     private MissaoDAO missaoDAO;
 
-    // Injeção de dependência via construtor
+    // Injecao de dependencia via construtor
     public AdministradorController() {
     	 this.aventureiroDAO = new AventureiroDAO();
          this.missaoDAO = new MissaoDAO();
     }
-
+    // ---------- CRUD do aventureiro ----------
     // Cadastrar um novo aventureiro
     public void cadastrarAventureiro(String nome, String login, String senha, int nivel, String classe) {
         Aventureiro aventureiro = new Aventureiro(nome, login, senha, nivel, classe);
-        aventureiroDAO.salvar(aventureiro); // Salva um único aventureiro
+        aventureiroDAO.salvar(aventureiro); // Salva um ï¿½nico aventureiro
     }
 
     // Atualizar um aventureiro existente
@@ -36,7 +36,7 @@ public class AdministradorController {
                 return;
             }
         }
-        System.out.println("Aventureiro não encontrado!");
+        System.out.println("Aventureiro nao encontrado!");
     }
 
     // Remover um aventureiro
@@ -44,29 +44,31 @@ public class AdministradorController {
         aventureiroDAO.excluir(login); // Remove o aventureiro pelo login
     }
 
-    // Cadastrar uma nova missão
+    
+    // ---------- CRUD da missao ----------
+    // Cadastrar uma nova missao
     public void cadastrarMissao(String titulo, String descricao, int nivelRequerido) {
         Missao missao = new Missao(titulo, descricao, nivelRequerido);
-        missaoDAO.salvar(missao); // Salva uma única missão
+        missaoDAO.salvar(missao); // Salva uma unica missao
     }
 
-    // Atualizar uma missão existente
+    // Atualizar uma missao existente
     public void atualizarMissao(String titulo, String novaDescricao, int novoNivel) {
         List<Missao> missoes = missaoDAO.carregar();
         for (Missao m : missoes) {
             if (m.getTitulo().equals(titulo)) {
-                m.setDescricao(novaDescricao); // Atualiza a descrição
-                m.setNivelRequerido(novoNivel); // Atualiza o nível requerido
+                m.setDescricao(novaDescricao); // Atualiza a descricao
+                m.setNivelRequerido(novoNivel); // Atualiza o nivel requerido
                 missaoDAO.atualizar(missoes); // Atualiza a lista completa
                 return;
             }
         }
-        System.out.println("Missão não encontrada!");
+        System.out.println("Missao nao encontrada!");
     }
 
-    // Remover uma missão
+    // Remover uma missao
     public void removerMissao(String titulo) {
-        missaoDAO.excluir(titulo); // Remove a missão pelo título
+        missaoDAO.excluir(titulo); // Remove a missao pelo titulo
     }
 
     // Listar todos os aventureiros
@@ -74,7 +76,7 @@ public class AdministradorController {
         return aventureiroDAO.carregar();
     }
 
-    // Listar todas as missões
+    // Listar todas as missoes
     public List<Missao> listarMissoes() {
         return missaoDAO.carregar();
     }

@@ -16,7 +16,7 @@ public class GerenciarMissoesView extends JFrame {
     public GerenciarMissoesView() {
         adminController = new AdministradorController();
 
-        setTitle("Gerenciar Missões");
+        setTitle("Gerenciar Missoes");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -38,7 +38,7 @@ public class GerenciarMissoesView extends JFrame {
         panelBotoes.add(btnExcluir);
         add(panelBotoes, BorderLayout.SOUTH);
 
-        // Eventos dos botões
+        // Eventos dos botï¿½es
         btnAdicionar.addActionListener(e -> adicionarMissao());
         btnEditar.addActionListener(e -> editarMissao());
         btnExcluir.addActionListener(e -> excluirMissao());
@@ -50,14 +50,14 @@ public class GerenciarMissoesView extends JFrame {
         model.clear();
         List<Missao> missoes = adminController.listarMissoes(); // Usa o AdministradorController
         for (Missao m : missoes) {
-            model.addElement(m.getTitulo() + " - Nível: " + m.getNivelRequerido());
+            model.addElement(m.getTitulo() + " - Nivel: " + m.getNivelRequerido());
         }
     }
 
     private void adicionarMissao() {
-        String titulo = JOptionPane.showInputDialog("Título da Missão:");
-        String descricao = JOptionPane.showInputDialog("Descrição:");
-        int nivelMinimo = Integer.parseInt(JOptionPane.showInputDialog("Nível mínimo:"));
+        String titulo = JOptionPane.showInputDialog("Titulo da Missso:");
+        String descricao = JOptionPane.showInputDialog("Descricao:");
+        int nivelMinimo = Integer.parseInt(JOptionPane.showInputDialog("Nivel minimo:"));
 
         if (titulo != null && descricao != null) {
             adminController.cadastrarMissao(titulo, descricao, nivelMinimo); 
@@ -71,16 +71,16 @@ public class GerenciarMissoesView extends JFrame {
             List<Missao> missoes = adminController.listarMissoes(); 
             Missao selecionada = missoes.get(index);
 
-            String novoTitulo = JOptionPane.showInputDialog("Novo título:", selecionada.getTitulo());
-            String novaDescricao = JOptionPane.showInputDialog("Nova descrição:", selecionada.getDescricao());
-            int novoNivel = Integer.parseInt(JOptionPane.showInputDialog("Novo nível mínimo:", selecionada.getNivelRequerido()));
+            String novoTitulo = JOptionPane.showInputDialog("Novo titulo:", selecionada.getTitulo());
+            String novaDescricao = JOptionPane.showInputDialog("Nova descricao:", selecionada.getDescricao());
+            int novoNivel = Integer.parseInt(JOptionPane.showInputDialog("Novo nivel minimo:", selecionada.getNivelRequerido()));
 
             if (novoTitulo != null && novaDescricao != null) {
                 adminController.atualizarMissao(selecionada.getTitulo(), novaDescricao, novoNivel); // Usa o AdministradorController
                 carregarMissoes();
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione uma missão para editar.");
+            JOptionPane.showMessageDialog(this, "Selecione uma missao para editar.");
         }
     }
 
@@ -92,7 +92,7 @@ public class GerenciarMissoesView extends JFrame {
             adminController.removerMissao(selecionada.getTitulo()); // Usa o AdministradorController
             carregarMissoes();
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione uma missão para excluir.");
+            JOptionPane.showMessageDialog(this, "Selecione uma missao para excluir.");
         }
     }
 }

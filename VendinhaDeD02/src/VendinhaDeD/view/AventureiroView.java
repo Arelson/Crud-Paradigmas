@@ -22,7 +22,7 @@ public class AventureiroView extends JFrame {
         this.aventureiro = aventureiro;
         this.missaoDAO = missaoDAO;
 
-        setTitle("Escolha sua Missão");
+        setTitle("Escolha sua Missao");
         setSize(400, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(3, 1));
@@ -54,16 +54,16 @@ public class AventureiroView extends JFrame {
             }
         }
         if (cbMissoes.getItemCount() == 0) {
-            cbMissoes.addItem("Nenhuma missão disponível.");
+            cbMissoes.addItem("Nenhuma missao disponivel.");
         }
     }
 
     private void participarMissao() {
         String missaoSelecionada = (String) cbMissoes.getSelectedItem();
-        if (missaoSelecionada == null || missaoSelecionada.equals("Nenhuma missão disponível.")) {
-            JOptionPane.showMessageDialog(this, "Nenhuma missão disponível para seu nível.", "Erro", JOptionPane.ERROR_MESSAGE);
+        if (missaoSelecionada == null || missaoSelecionada.equals("Nenhuma missao disponivel.")) {
+            JOptionPane.showMessageDialog(this, "Nenhuma missao disponivel para seu nivel.", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        JOptionPane.showMessageDialog(this, aventureiro.getNome() + " iniciou a missão: " + missaoSelecionada + "!", "Missão Aceita", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, aventureiro.getNome() + " iniciou a missao: " + missaoSelecionada + "!", "Missao Aceita", JOptionPane.INFORMATION_MESSAGE);
     }
 }

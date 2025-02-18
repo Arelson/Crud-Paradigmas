@@ -16,7 +16,7 @@ public class AdminView extends JFrame {
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         btnGerenciarAventureiros = new JButton("Gerenciar Aventureiros");
-        btnGerenciarMissoes = new JButton("Gerenciar Missões");
+        btnGerenciarMissoes = new JButton("Gerenciar Missoes");
         btnVolta = new JButton("Voltar");
         btnSair = new JButton("Sair");
 

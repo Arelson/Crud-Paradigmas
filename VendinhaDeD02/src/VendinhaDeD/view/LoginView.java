@@ -47,7 +47,7 @@ public class LoginView extends JFrame {
         add(btnLogin);
         add(btnSair);
 
-        // Evento do botão Login
+        // Evento do botao Login
         btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +55,7 @@ public class LoginView extends JFrame {
             }
         });
 
-        // Evento do botão Sair
+        // Evento do botï¿½o Sair
         btnSair.addActionListener(e -> System.exit(0));
 
         setLocationRelativeTo(null);
@@ -65,7 +65,7 @@ public class LoginView extends JFrame {
         String login = txtLogin.getText();
         String senha = new String(txtSenha.getPassword());
 
-        // Verificar se é um Administrador
+        // Verificar se ï¿½ um Administrador
         if (login.equals("admin") && senha.equals("admin123")) {
             String chaveAcesso = JOptionPane.showInputDialog("Digite a chave de acesso:");
             if ("12345".equals(chaveAcesso)) {
@@ -79,7 +79,7 @@ public class LoginView extends JFrame {
             }
         }
 
-        // Verificar se é um Aventureiro
+        // Verificar se o um Aventureiro
         List<Aventureiro> aventureiros = aventureiroDAO.carregar();
         for (Aventureiro a : aventureiros) {
             if (a.getLogin().equals(login) && a.autenticar(senha)) {
@@ -92,7 +92,7 @@ public class LoginView extends JFrame {
             }
         }
 
-        JOptionPane.showMessageDialog(this, "Usuário ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Usuario ou senha invalidos!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void main(String[] args) {

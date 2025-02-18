@@ -49,7 +49,7 @@ public class GerenciarAventureirosView extends JFrame {
         model.clear();
         List<Aventureiro> aventureiros = admCrt.listarAventureiros(); // Usa o AdministradorController
         for (Aventureiro a : aventureiros) {
-            model.addElement(a.getNome() + " - " + a.getClasse() + " (Nível " + a.getNivel() + ")");
+            model.addElement(a.getNome() + " - " + a.getClasse() + " (Nivel " + a.getNivel() + ")");
         }
     }
 
@@ -57,7 +57,7 @@ public class GerenciarAventureirosView extends JFrame {
         String nome = JOptionPane.showInputDialog("Nome do aventureiro: ");
         String login = JOptionPane.showInputDialog("Login: ");
         String senha = JOptionPane.showInputDialog("Senha: ");
-        String nivelStr = JOptionPane.showInputDialog("Nível atual: ");
+        String nivelStr = JOptionPane.showInputDialog("Nivel atual: ");
         String[] opClasse = {"Mago", "Guerreiro", "Sentinela"};
         String classe = (String) JOptionPane.showInputDialog(null, "Escolha a Classe: ", "Classe",
                 JOptionPane.QUESTION_MESSAGE, null, opClasse, opClasse[0]);
@@ -66,11 +66,11 @@ public class GerenciarAventureirosView extends JFrame {
         try {
             nivel = Integer.parseInt(nivelStr);
             if (nivel < 1) {
-                JOptionPane.showMessageDialog(null, "O nível não pode ser menor que 1.");
+                JOptionPane.showMessageDialog(null, "O nivel nao pode ser menor que 1.");
                 return;
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Digite um número válido para o nível.");
+            JOptionPane.showMessageDialog(null, "Digite um numero valido para o nivel.");
             return;
         }
 
@@ -78,7 +78,7 @@ public class GerenciarAventureirosView extends JFrame {
             admCrt.cadastrarAventureiro(nome, login, senha, nivel, classe); // Usa o AdministradorController
             carregarAvent();
         } else {
-            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios.");
+            JOptionPane.showMessageDialog(this, "Todos os campos sao obrigatorios.");
         }
     }
 
@@ -91,17 +91,17 @@ public class GerenciarAventureirosView extends JFrame {
             String nome = JOptionPane.showInputDialog("Novo nome: ", selecionado.getNome());
             String login = JOptionPane.showInputDialog("Novo login: ", selecionado.getLogin());
             String senha = JOptionPane.showInputDialog("Nova senha: ", selecionado.getSenha());
-            String nivelStr = JOptionPane.showInputDialog("Novo nível: ", selecionado.getNivel());
+            String nivelStr = JOptionPane.showInputDialog("Novo nivel: ", selecionado.getNivel());
 
             int nivel;
             try {
                 nivel = Integer.parseInt(nivelStr);
                 if (nivel < 1) {
-                    JOptionPane.showMessageDialog(null, "O nível não pode ser menor que 1.");
+                    JOptionPane.showMessageDialog(null, "O nivel nao pode ser menor que 1.");
                     return;
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Digite um número válido para o nível.");
+                JOptionPane.showMessageDialog(null, "Digite um numero valido para o nivel.");
                 return;
             }
 

@@ -5,6 +5,7 @@ public class Administrador extends usuario {
     private String chaveAcesso;
     private AdministradorController controller;
 
+    // funcoes para alteração das informações no txt do aventureiro e missoes pelo admin
     public Administrador(String nome, String login, String senha, String chaveAcesso) {
         super(nome, login, senha);
         this.chaveAcesso = chaveAcesso;
