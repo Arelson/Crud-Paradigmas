@@ -16,7 +16,8 @@ public class PainelAventureiroView extends JFrame {
     private MissaoDAO missaoDAO;
     private DefaultListModel<String> listaMissoesModel;
     private JList<String> listaMissoes;
-    
+    private JButton btnVoltar; // Botão para voltar à tela de login
+
     public PainelAventureiroView(Aventureiro aventureiro) {
         this.aventureiro = aventureiro;
         this.missaoDAO = new MissaoDAO();
@@ -24,7 +25,7 @@ public class PainelAventureiroView extends JFrame {
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        
+
         // Layout principal
         setLayout(new BorderLayout());
 
@@ -40,7 +41,7 @@ public class PainelAventureiroView extends JFrame {
         carregarMissoes();
         listaMissoes = new JList<>(listaMissoesModel);
         JScrollPane scrollPane = new JScrollPane(listaMissoes);
-        
+
         // Botão para escolher missão
         JButton btnEscolherMissao = new JButton("Escolher Missão");
         btnEscolherMissao.addActionListener(new ActionListener() {
@@ -50,10 +51,24 @@ public class PainelAventureiroView extends JFrame {
             }
         });
 
+        // Botão para voltar à tela de login
+        btnVoltar = new JButton("Voltar");
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                voltarParaLogin();
+            }
+        });
+
+        // Painel para os botões
+        JPanel painelBotoes = new JPanel(new GridLayout(1, 2));
+        painelBotoes.add(btnEscolherMissao);
+        painelBotoes.add(btnVoltar);
+
         // Adicionando componentes à tela
         add(painelInfo, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
-        add(btnEscolherMissao, BorderLayout.SOUTH);
+        add(painelBotoes, BorderLayout.SOUTH);
     }
 
     private void carregarMissoes() {
@@ -79,5 +94,13 @@ public class PainelAventureiroView extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Selecione uma missão antes de continuar.");
         }
+    }
+
+    private void voltarParaLogin() {
+        // Fecha a janela atual (PainelAventureiroView)
+        this.dispose();
+
+        // Abre a tela de login (LoginView)
+        new LoginView().setVisible(true);
     }
 }

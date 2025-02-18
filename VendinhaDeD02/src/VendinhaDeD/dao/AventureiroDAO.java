@@ -65,4 +65,5 @@ public class AventureiroDAO {
         aventureiros.removeIf(a -> a.getLogin().equals(login));
         atualizar(aventureiros);
     }
+
 }

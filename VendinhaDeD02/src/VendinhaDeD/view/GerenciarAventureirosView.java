@@ -58,7 +58,7 @@ public class GerenciarAventureirosView extends JFrame {
         String login = JOptionPane.showInputDialog("Login: ");
         String senha = JOptionPane.showInputDialog("Senha: ");
         String nivelStr = JOptionPane.showInputDialog("Nível atual: ");
-        String[] opClasse = {"Mago", "Guerreiro", "Patrulheiro"};
+        String[] opClasse = {"Mago", "Guerreiro", "Sentinela"};
         String classe = (String) JOptionPane.showInputDialog(null, "Escolha a Classe: ", "Classe",
                 JOptionPane.QUESTION_MESSAGE, null, opClasse, opClasse[0]);
 
