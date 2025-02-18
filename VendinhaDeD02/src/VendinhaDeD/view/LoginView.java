@@ -20,10 +20,12 @@ public class LoginView extends JFrame {
     
     private AventureiroDAO aventureiroDAO;
     private MissaoDAO missaoDAO;
+    private PainelAventureiroView PnAvent;
 
     public LoginView() {
         aventureiroDAO = new AventureiroDAO();
         missaoDAO = new MissaoDAO();
+        
         
         setTitle("Login - Aventura RPG");
         setSize(400, 250);
@@ -82,7 +84,9 @@ public class LoginView extends JFrame {
         for (Aventureiro a : aventureiros) {
             if (a.getLogin().equals(login) && a.autenticar(senha)) {
                 JOptionPane.showMessageDialog(this, "Bem-vindo, " + a.getNome() + "!");
-                new AventureiroView(a, missaoDAO).setVisible(true);
+                //new AventureiroView(a, missaoDAO).setVisible(true);
+                PnAvent = new PainelAventureiroView(a);
+                PnAvent.setVisible(true);
                 this.dispose();
                 return;
             }

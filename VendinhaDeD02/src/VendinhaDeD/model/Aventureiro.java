@@ -1,7 +1,13 @@
 package VendinhaDeD.model;
 
-public class Aventureiro extends usuario {
+import java.io.Serializable;
 
+public class Aventureiro extends usuario implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int nivel;
 	private String classe;
 	

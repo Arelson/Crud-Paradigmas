@@ -1,6 +1,7 @@
 package VendinhaDeD.view;
 
 import VendinhaDeD.controller.AdministradorController;
+import VendinhaDeD.view.GerenciarAventureirosView;
 import javax.swing.*;
 
 public class AdminView extends JFrame {
@@ -30,8 +31,8 @@ public class AdminView extends JFrame {
         add(btnSair);
 
         // Eventos
-        btnGerenciarAventureiros.addActionListener(e -> JOptionPane.showMessageDialog(this, "Gerenciamento de aventureiros em construção!"));
-        btnGerenciarMissoes.addActionListener(e -> JOptionPane.showMessageDialog(this, "Gerenciamento de missões em construção!"));
+        btnGerenciarAventureiros.addActionListener(e -> new GerenciarAventureirosView().setVisible(true));
+        btnGerenciarMissoes.addActionListener(e -> new GerenciarMissoesView().setVisible(true));
         btnSair.addActionListener(e -> System.exit(0));
 
         setLocationRelativeTo(null);

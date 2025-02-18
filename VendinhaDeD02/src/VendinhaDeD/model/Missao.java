@@ -1,7 +1,13 @@
 package VendinhaDeD.model;
 
-public class Missao {
-    private String titulo;
+import java.io.Serializable;
+
+public class Missao implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String titulo;
     private String descricao;
     private int nivelRequerido;
 
@@ -21,6 +27,17 @@ public class Missao {
 
     public int getNivelRequerido() {
         return nivelRequerido;
+    }
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setDescricao(String desc) {
+        this.descricao = desc;
+    }
+
+    public void setNivelRequerido(int nivelr) {
+        this.nivelRequerido = nivelr;
     }
 
     public boolean podeParticipar(Aventureiro aventureiro) {
