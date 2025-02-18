@@ -24,11 +24,14 @@ public class AdministradorController {
     }
 
     // Atualizar um aventureiro existente
-    public void atualizarAventureiro(String login, int novoNivel) {
+    public void atualizarAventureiro(String nome, String login, String senha, int novoNivel) {
         List<Aventureiro> aventureiros = aventureiroDAO.carregar();
         for (Aventureiro a : aventureiros) {
             if (a.getLogin().equals(login)) {
-                a.setNivel(novoNivel); // Atualiza o nível diretamente
+                a.setNivel(novoNivel);
+                a.setLogin(login);
+                a.setSenha(senha);
+                a.setNome(nome);
                 aventureiroDAO.atualizar(aventureiros); // Atualiza a lista completa
                 return;
             }

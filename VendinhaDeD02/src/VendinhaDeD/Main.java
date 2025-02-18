@@ -5,5 +5,7 @@ public class Main {
     public static void main(String[] args) {
         LoginView lv = new LoginView();
         lv.setVisible(true);
+        
+        //System.out.println("Diretório de trabalho atual: " + System.getProperty("avent.dat"));
     }
 }

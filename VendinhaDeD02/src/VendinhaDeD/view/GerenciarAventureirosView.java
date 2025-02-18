@@ -29,9 +29,9 @@ public class GerenciarAventureirosView extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel panelBnt = new JPanel();
-        bntAdicionar = new JButton("Adicionar Aventureiro");
-        bntEditar = new JButton("Editar Aventureiro");
-        bntExcluir = new JButton("Excluir Aventureiro");
+        bntAdicionar = new JButton("Adicionar");
+        bntEditar = new JButton("Editar");
+        bntExcluir = new JButton("Excluir");
 
         panelBnt.add(bntAdicionar);
         panelBnt.add(bntEditar);
@@ -106,7 +106,7 @@ public class GerenciarAventureirosView extends JFrame {
             }
 
             if (nome != null && login != null && senha != null) {
-                admCrt.atualizarAventureiro(selecionado.getLogin(), nivel); // Usa o AdministradorController
+                admCrt.atualizarAventureiro(nome,selecionado.getLogin(), senha, nivel); // Usa o AdministradorController
                 carregarAvent();
             }
         } else {

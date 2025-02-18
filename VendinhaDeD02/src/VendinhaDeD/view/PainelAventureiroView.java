@@ -11,11 +11,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class PainelAventureiroView extends JFrame {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Aventureiro aventureiro;
+    private static final long serialVersionUID = 1L;
+    private Aventureiro aventureiro;
     private MissaoDAO missaoDAO;
     private DefaultListModel<String> listaMissoesModel;
     private JList<String> listaMissoes;
@@ -63,15 +60,22 @@ public class PainelAventureiroView extends JFrame {
         List<Missao> missoes = missaoDAO.carregar();
         listaMissoesModel.clear();
         for (Missao m : missoes) {
-            listaMissoesModel.addElement(m.getTitulo() + " - Dificuldade: " + m.getNivelRequerido());
+            listaMissoesModel.addElement(m.getTitulo() + " - Nível Requerido: " + m.getNivelRequerido());
         }
     }
 
     private void escolherMissao() {
         int index = listaMissoes.getSelectedIndex();
         if (index != -1) {
-            String missaoEscolhida = listaMissoesModel.getElementAt(index);
-            JOptionPane.showMessageDialog(this, aventureiro.getNome() + " escolheu a missão:\n" + missaoEscolhida);
+            List<Missao> missoes = missaoDAO.carregar();
+            Missao missaoEscolhida = missoes.get(index);
+
+            // Verifica se o nível do aventureiro é suficiente para a missão
+            if (aventureiro.getNivel() >= missaoEscolhida.getNivelRequerido()) {
+                JOptionPane.showMessageDialog(this, aventureiro.getNome() + " escolheu a missão:\n" + missaoEscolhida.getTitulo());
+            } else {
+                JOptionPane.showMessageDialog(this, "Nível insuficiente para escolher esta missão.\nNível requerido: " + missaoEscolhida.getNivelRequerido());
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione uma missão antes de continuar.");
         }
