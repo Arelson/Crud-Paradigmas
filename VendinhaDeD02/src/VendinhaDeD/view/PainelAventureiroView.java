@@ -16,7 +16,7 @@ public class PainelAventureiroView extends JFrame {
     private MissaoDAO missaoDAO;
     private DefaultListModel<String> listaMissoesModel;
     private JList<String> listaMissoes;
-    private JButton btnVoltar; // Botï¿½o para voltar ï¿½ tela de login
+    private JButton btnVoltar; // Botão para voltar à tela de login
 
     public PainelAventureiroView(Aventureiro aventureiro) {
         this.aventureiro = aventureiro;
@@ -29,21 +29,21 @@ public class PainelAventureiroView extends JFrame {
         // Layout principal
         setLayout(new BorderLayout());
 
-        // Painel de informaï¿½ï¿½es do aventureiro
+        // Painel de informações do aventureiro
         JPanel painelInfo = new JPanel(new GridLayout(3, 1));
-        painelInfo.setBorder(BorderFactory.createTitledBorder("Informacoes do Aventureiro"));
+        painelInfo.setBorder(BorderFactory.createTitledBorder("Informações do Aventureiro"));
         painelInfo.add(new JLabel("Nome: " + aventureiro.getNome()));
         painelInfo.add(new JLabel("Classe: " + aventureiro.getClasse()));
-        painelInfo.add(new JLabel("Nivel: " + aventureiro.getNivel()));
+        painelInfo.add(new JLabel("Nível: " + aventureiro.getNivel()));
 
-        // Lista de missï¿½es disponï¿½veis
+        // Lista de missões disponíveis
         listaMissoesModel = new DefaultListModel<>();
         carregarMissoes();
         listaMissoes = new JList<>(listaMissoesModel);
         JScrollPane scrollPane = new JScrollPane(listaMissoes);
 
-        // Botï¿½o para escolher missï¿½o
-        JButton btnEscolherMissao = new JButton("Escolher Missao");
+        // Botão para escolher missão
+        JButton btnEscolherMissao = new JButton("Escolher Missão");
         btnEscolherMissao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,7 +51,7 @@ public class PainelAventureiroView extends JFrame {
             }
         });
 
-        // Botï¿½o para voltar ï¿½ tela de login
+        // Botão para voltar à tela de login
         btnVoltar = new JButton("Voltar");
         btnVoltar.addActionListener(new ActionListener() {
             @Override
@@ -60,12 +60,12 @@ public class PainelAventureiroView extends JFrame {
             }
         });
 
-        // Painel para os botï¿½es
+        // Painel para os botões
         JPanel painelBotoes = new JPanel(new GridLayout(1, 2));
         painelBotoes.add(btnEscolherMissao);
         painelBotoes.add(btnVoltar);
 
-        // Adicionando componentes ï¿½ tela
+        // Adicionando componentes à tela
         add(painelInfo, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         add(painelBotoes, BorderLayout.SOUTH);
@@ -75,7 +75,7 @@ public class PainelAventureiroView extends JFrame {
         List<Missao> missoes = missaoDAO.carregar();
         listaMissoesModel.clear();
         for (Missao m : missoes) {
-            listaMissoesModel.addElement(m.getTitulo() + " - Nivel Requerido: " + m.getNivelRequerido());
+            listaMissoesModel.addElement(m.getTitulo() + " - Nível Requerido: " + m.getNivelRequerido());
         }
     }
 
@@ -85,14 +85,14 @@ public class PainelAventureiroView extends JFrame {
             List<Missao> missoes = missaoDAO.carregar();
             Missao missaoEscolhida = missoes.get(index);
 
-            // Verifica se o nï¿½vel do aventureiro ï¿½ suficiente para a missï¿½o
+            // Verifica se o nível do aventureiro é suficiente para a missão
             if (aventureiro.getNivel() >= missaoEscolhida.getNivelRequerido()) {
-                JOptionPane.showMessageDialog(this, aventureiro.getNome() + " escolheu a missao:\n" + missaoEscolhida.getTitulo());
+                JOptionPane.showMessageDialog(this, aventureiro.getNome() + " escolheu a missão:\n" + missaoEscolhida.getTitulo() + "\nDescrição:\n" + missaoEscolhida.getDescricao());
             } else {
-                JOptionPane.showMessageDialog(this, "Nivel insuficiente para escolher esta missao.\nNivel requerido: " + missaoEscolhida.getNivelRequerido());
+                JOptionPane.showMessageDialog(this, "Nível insuficiente para escolher esta missão.\nNível requerido: " + missaoEscolhida.getNivelRequerido());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione uma missao antes de continuar.");
+            JOptionPane.showMessageDialog(this, "Selecione uma missão antes de continuar.");
         }
     }
 

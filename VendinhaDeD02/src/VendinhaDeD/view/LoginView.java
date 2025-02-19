@@ -1,6 +1,6 @@
 package VendinhaDeD.view;
 import VendinhaDeD.dao.AventureiroDAO;
-import VendinhaDeD.dao.MissaoDAO;
+//import VendinhaDeD.dao.MissaoDAO;
 import VendinhaDeD.model.Aventureiro;
 import javax.swing.*;
 import java.awt.*;
@@ -19,12 +19,12 @@ public class LoginView extends JFrame {
     private JButton btnSair;
     
     private AventureiroDAO aventureiroDAO;
-    private MissaoDAO missaoDAO;
+    //private MissaoDAO missaoDAO;
     private PainelAventureiroView PnAvent;
 
     public LoginView() {
         aventureiroDAO = new AventureiroDAO();
-        missaoDAO = new MissaoDAO();
+        //missaoDAO = new MissaoDAO();
         
         
         setTitle("Login - Aventura RPG");
