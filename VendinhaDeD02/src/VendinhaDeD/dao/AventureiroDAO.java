@@ -14,12 +14,12 @@ public class AventureiroDAO {
         try (BufferedReader br = new BufferedReader(new FileReader(ARQUIVO))) {
             String linha;
             while ((linha = br.readLine()) != null) {
-                String[] dados = linha.split(";"); // Supondo que os dados são separados por ";"
-                if (dados.length == 5) { // Verifica se a linha contém os dados corretos
+                String[] dados = linha.split(";"); // Supondo que os dados sï¿½o separados por ";"
+                if (dados.length == 5) { // Verifica se a linha contï¿½m os dados corretos
                     String nome = dados[0];
                     String login = dados[1];
                     String senha = dados[2];
-                    int nivel = Integer.parseInt(dados[3]); // Converte o nível para int
+                    int nivel = Integer.parseInt(dados[3]); // Converte o nï¿½vel para int
                     String classe = dados[4];
 
                     // Cria o objeto Aventureiro com todos os atributos
@@ -28,9 +28,9 @@ public class AventureiroDAO {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Arquivo não encontrado ou erro ao ler o arquivo. Criando novo arquivo.");
+            System.out.println("Arquivo nï¿½o encontrado ou erro ao ler o arquivo. Criando novo arquivo.");
         } catch (NumberFormatException e) {
-            System.out.println("Erro ao converter nível para inteiro. Verifique o formato do arquivo.");
+            System.out.println("Erro ao converter nï¿½vel para inteiro. Verifique o formato do arquivo.");
         }
         return aventureiros;
     }
