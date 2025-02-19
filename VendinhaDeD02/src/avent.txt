@@ -1,3 +1,1 @@
-Davi;dv;123;59;Guerreiro
-Lucas;Lokasso;2345678;20;Mago
-Jubileu;Jub;leu;99;Guerreiro
+

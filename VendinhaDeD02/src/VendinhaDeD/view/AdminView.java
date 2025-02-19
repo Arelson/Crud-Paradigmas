@@ -1,6 +1,8 @@
 package VendinhaDeD.view;
 
 import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
 
 public class AdminView extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -11,21 +13,52 @@ public class AdminView extends JFrame {
 
     public AdminView() {
         setTitle("Painel do Administrador");
-        setSize(400, 200);
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
+        // Define o ícone da janela
+        URL iconURL = getClass().getResource("/icon1.png");
+        if (iconURL != null) {
+            setIconImage(new ImageIcon(iconURL).getImage());
+        } else {
+            System.err.println("Ícone não encontrado! Certifique-se de que 'icon.png' está na pasta correta.");
+        }
+
+        // Painel de fundo com imagem
+        setContentPane(new BackgroundPanel("/background.png")); 
+
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+
+        // Criando botões
         btnGerenciarAventureiros = new JButton("Gerenciar Aventureiros");
-        btnGerenciarMissoes = new JButton("Gerenciar Missoes");
+        btnGerenciarMissoes = new JButton("Gerenciar Missões");
         btnVolta = new JButton("Voltar");
         btnSair = new JButton("Sair");
 
-        add(btnGerenciarAventureiros);
-        add(btnGerenciarMissoes);
-        add(btnVolta);
-        add(btnSair);
+        // Configurando botões na interface
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(btnGerenciarAventureiros, gbc);
 
-        // Eventos
+        gbc.gridy = 1;
+        add(btnGerenciarMissoes, gbc);
+
+        // Criando painel para botões Voltar e Sair
+        JPanel painelBotoes = new JPanel(new FlowLayout());
+        painelBotoes.setOpaque(false); 
+        painelBotoes.add(btnVolta);
+        painelBotoes.add(btnSair);
+
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        add(painelBotoes, gbc);
+
+        // Eventos dos botões
         btnGerenciarAventureiros.addActionListener(e -> new GerenciarAventureirosView().setVisible(true));
         btnGerenciarMissoes.addActionListener(e -> new GerenciarMissoesView().setVisible(true));
         btnVolta.addActionListener(e -> voltarParaLogin());
@@ -35,10 +68,37 @@ public class AdminView extends JFrame {
     }
 
     private void voltarParaLogin() {
-        // Fecha a janela atual (AdminView)
         this.dispose();
-        
-        // Abre a tela de login (LoginView)
         new LoginView().setVisible(true);
+    }
+
+    // Classe interna para criar um painel de fundo com imagem
+    static class BackgroundPanel extends JPanel {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private Image backgroundImage;
+
+        public BackgroundPanel(String imagePath) {
+            URL imageUrl = getClass().getResource(imagePath);
+            if (imageUrl != null) {
+                backgroundImage = new ImageIcon(imageUrl).getImage();
+            } else {
+                System.err.println("Imagem de fundo não encontrada: " + imagePath);
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (backgroundImage != null) {
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new AdminView().setVisible(true);
     }
 }

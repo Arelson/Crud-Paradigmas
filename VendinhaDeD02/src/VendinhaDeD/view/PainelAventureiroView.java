@@ -7,7 +7,7 @@ import VendinhaDeD.model.Missao;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.List;
 
 public class PainelAventureiroView extends JFrame {
@@ -16,59 +16,81 @@ public class PainelAventureiroView extends JFrame {
     private MissaoDAO missaoDAO;
     private DefaultListModel<String> listaMissoesModel;
     private JList<String> listaMissoes;
-    private JButton btnVoltar; // Botão para voltar à tela de login
+    private JButton btnVoltar;
 
     public PainelAventureiroView(Aventureiro aventureiro) {
         this.aventureiro = aventureiro;
         this.missaoDAO = new MissaoDAO();
         setTitle("Painel do Aventureiro - " + aventureiro.getNome());
-        setSize(400, 400);
+        setSize(500, 500); // Aumenta o tamanho para melhor distribuição
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        URL iconURL = getClass().getResource("/icon1.png");
+        if (iconURL != null) {
+            setIconImage(new ImageIcon(iconURL).getImage());
+        } else {
+            System.err.println("Ícone não encontrado! Certifique-se de que 'icon1.png' está na pasta correta.");
+        }
+
         // Layout principal
-        setLayout(new BorderLayout());
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
 
         // Painel de informações do aventureiro
         JPanel painelInfo = new JPanel(new GridLayout(3, 1));
-        painelInfo.setBorder(BorderFactory.createTitledBorder("Informações do Aventureiro"));
+        painelInfo.setBorder(BorderFactory.createTitledBorder("Informações do aventureiro"));
         painelInfo.add(new JLabel("Nome: " + aventureiro.getNome()));
         painelInfo.add(new JLabel("Classe: " + aventureiro.getClasse()));
         painelInfo.add(new JLabel("Nível: " + aventureiro.getNivel()));
+
+        // Ajusta tamanho do painel de informações
+        painelInfo.setPreferredSize(new Dimension(400, 80));
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(painelInfo, gbc);
 
         // Lista de missões disponíveis
         listaMissoesModel = new DefaultListModel<>();
         carregarMissoes();
         listaMissoes = new JList<>(listaMissoesModel);
+        listaMissoes.setFixedCellHeight(25); // Aumenta altura das células para evitar corte
+        listaMissoes.setVisibleRowCount(5); // Garante mais espaço para visualização
+        listaMissoes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         JScrollPane scrollPane = new JScrollPane(listaMissoes);
+        scrollPane.setPreferredSize(new Dimension(400, 200));
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.weighty = 1.0; // Permite expansão vertical
+        gbc.fill = GridBagConstraints.BOTH;
+        add(scrollPane, gbc);
 
         // Botão para escolher missão
         JButton btnEscolherMissao = new JButton("Escolher Missão");
-        btnEscolherMissao.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                escolherMissao();
-            }
-        });
+        btnEscolherMissao.addActionListener((ActionEvent e) -> escolherMissao());
 
         // Botão para voltar à tela de login
         btnVoltar = new JButton("Voltar");
-        btnVoltar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                voltarParaLogin();
-            }
-        });
+        btnVoltar.addActionListener((ActionEvent e) -> voltarParaLogin());
 
         // Painel para os botões
-        JPanel painelBotoes = new JPanel(new GridLayout(1, 2));
+        JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 5));
         painelBotoes.add(btnEscolherMissao);
         painelBotoes.add(btnVoltar);
 
-        // Adicionando componentes à tela
-        add(painelInfo, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
-        add(painelBotoes, BorderLayout.SOUTH);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.weighty = 0; // Não precisa crescer
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(painelBotoes, gbc);
     }
 
     private void carregarMissoes() {
@@ -85,9 +107,8 @@ public class PainelAventureiroView extends JFrame {
             List<Missao> missoes = missaoDAO.carregar();
             Missao missaoEscolhida = missoes.get(index);
 
-            // Verifica se o nível do aventureiro é suficiente para a missão
             if (aventureiro.getNivel() >= missaoEscolhida.getNivelRequerido()) {
-                JOptionPane.showMessageDialog(this, aventureiro.getNome() + " escolheu a missão:\n" + missaoEscolhida.getTitulo() + "\nDescrição:\n" + missaoEscolhida.getDescricao());
+                JOptionPane.showMessageDialog(this, aventureiro.getNome() + " escolheu a missão:\n" + missaoEscolhida.getTitulo() + "\n" + "Descrição:\n" + missaoEscolhida.getDescricao());
             } else {
                 JOptionPane.showMessageDialog(this, "Nível insuficiente para escolher esta missão.\nNível requerido: " + missaoEscolhida.getNivelRequerido());
             }
@@ -97,10 +118,7 @@ public class PainelAventureiroView extends JFrame {
     }
 
     private void voltarParaLogin() {
-        // Fecha a janela atual (PainelAventureiroView)
         this.dispose();
-
-        // Abre a tela de login (LoginView)
         new LoginView().setVisible(true);
     }
 }
